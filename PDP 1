@@ -1,0 +1,84 @@
+# Program Manajemen Data Suhu dengan data awal
+
+# Bisa diisi beberapa suhu awal
+suhu_list = [25.0, 30.5, 28.0, 22.5,45,5,1000000.7]  # Contoh suhu awal
+
+def tambah_suhu():
+    nilai = float(input("Masukkan suhu baru (°C): "))
+    suhu_list.append(nilai)
+    print(f"Suhu {nilai}°C berhasil ditambahkan!")
+
+def edit_suhu():
+    if not suhu_list:
+        print("Belum ada data suhu.")
+        return
+    tampilkan_suhu()
+    index = int(input("Pilih nomor suhu yang ingin diedit: ")) - 1
+    if 0 <= index < len(suhu_list):
+        nilai_baru = float(input("Masukkan nilai suhu baru (°C): "))
+        suhu_list[index] = nilai_baru
+        print("Suhu berhasil diupdate!")
+    else:
+        print("Nomor tidak valid!")
+
+def hapus_suhu():
+    if not suhu_list:
+        print("Belum ada data suhu.")
+        return
+    tampilkan_suhu()
+    index = int(input("Pilih nomor suhu yang ingin dihapus: ")) - 1
+    if 0 <= index < len(suhu_list):
+        suhu_dihapus = suhu_list.pop(index)
+        print(f"Suhu {suhu_dihapus}°C berhasil dihapus!")
+    else:
+        print("Nomor tidak valid!")
+
+def tampilkan_suhu():
+    if not suhu_list:
+        print("Belum ada data suhu.")
+        return
+    print("\nDaftar semua suhu:")
+    for i, s in enumerate(suhu_list, 1):
+        print(f"{i}. {s}°C")
+    print()
+
+def lihat_suhu():
+    if not suhu_list:
+        print("Belum ada data suhu.")
+        return
+    index = int(input("Masukkan nomor suhu yang ingin dilihat: ")) - 1
+    if 0 <= index < len(suhu_list):
+        print(f"Suhu nomor {index+1} adalah {suhu_list[index]}°C")
+    else:
+        print("Nomor tidak valid!")
+
+# Menu utama
+def menu():
+    while True:
+        print("\n=== Program Suhu ===")
+        print("1. Tambah suhu")
+        print("2. Edit suhu")
+        print("3. Hapus suhu")
+        print("4. Tampilkan semua suhu")
+        print("5. Lihat suhu tertentu")
+        print("6. Keluar")
+        pilihan = input("Pilih menu: ")
+
+        if pilihan == "1":
+            tambah_suhu()
+        elif pilihan == "2":
+            edit_suhu()
+        elif pilihan == "3":
+            hapus_suhu()
+        elif pilihan == "4":
+            tampilkan_suhu()
+        elif pilihan == "5":
+            lihat_suhu()
+        elif pilihan == "6":
+            print("Program selesai.")
+            break
+        else:
+            print("Pilihan tidak valid, coba lagi!")
+
+# Jalankan program
+menu()
