@@ -1,0 +1,59 @@
+# Smart Parking System
+
+parkiran = set()  # menyimpan plat nomor kendaraan yang sedang parkir
+
+def menu():
+    print("\n=== SMART PARKING SYSTEM ===")
+    print("1. Masuk Parkir")
+    print("2. Keluar Parkir")
+    print("3. Monitoring Kendaraan Parkir")
+    print("4. Exit")
+
+while True:
+    menu()
+    pilihan = input("Pilih menu (1-4): ")
+
+    # -------------------------
+    # 1. MASUK PARKIR
+    # -------------------------
+    if pilihan == "1":
+        plat = input("Masukkan plat nomor kendaraan: ").upper()
+
+        if plat in parkiran:
+            print(f"[GAGAL] Kendaraan dengan plat {plat} sudah ada di dalam parkiran!")
+        else:
+            parkiran.add(plat)
+            print(f"[SUKSES] Kendaraan {plat} berhasil masuk parkir.")
+
+    # -------------------------
+    # 2. KELUAR PARKIR
+    # -------------------------
+    elif pilihan == "2":
+        plat = input("Masukkan plat nomor kendaraan yang keluar: ").upper()
+
+        if plat not in parkiran:
+            print(f"[GAGAL] Plat {plat} tidak terdaftar! Kendaraan tidak ada di dalam parkiran.")
+        else:
+            parkiran.remove(plat)
+            print(f"[SUKSES] Kendaraan {plat} berhasil keluar.")
+
+    # -------------------------
+    # 3. MONITORING
+    # -------------------------
+    elif pilihan == "3":
+        print("\n--- Daftar Kendaraan di Parkiran ---")
+        if len(parkiran) == 0:
+            print("Tidak ada kendaraan yang sedang parkir.")
+        else:
+            for p in parkiran:
+                print(f"- {p}")
+
+    # -------------------------
+    # 4. EXIT
+    # -------------------------
+    elif pilihan == "4":
+        print("Terima kasih! Sistem parkir ditutup.")
+        break
+
+    else:
+        print("Pilihan tidak valid! Masukkan angka 1-4.")
